@@ -1,4 +1,7 @@
 import math
+import numpy as np
+
+coeficientes = [1, 0, -80.5, 132, 374.0625]
 
 def punto_fijo(g, x0, max_iter=100, max_value=1e10):
     for i in range(max_iter):
@@ -11,6 +14,7 @@ def punto_fijo(g, x0, max_iter=100, max_value=1e10):
         x0 = x1 
     return None, max_iter
 
+soluciones = np.roots(coeficientes)
 def g_cubica(a, b, c, d):
     return lambda x: x - (a*x**3 + b*x**2 + c*x + d) / (3*a*x**2 + 2*b*x + c)
 
@@ -31,8 +35,9 @@ def main():
             print(f"solución aproximada: {sol}")
         else:
             print("El método no convergió.")
-    
-    print(f"Raíces aprox: {soluciones}")
+    if (len(soluciones) == 0):
+        print(f"Raíces aprox: {soluciones}")
+print(f"Soluciones: {soluciones}")
 
 if __name__ == "__main__":
     main()
