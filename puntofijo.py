@@ -1,7 +1,8 @@
 import math
 import numpy as np
 
-coeficientes = [1, 0, -80.5, 132, 374.0625]
+# coeficientes = [1, 0, -80.5, 132, 374.0625]
+coeficientes = [1, 2.22, -46.2173, -52.668834, 450.49078]
 
 def punto_fijo(g, x0, max_iter=100, max_value=1e10):
     for i in range(max_iter):
@@ -20,13 +21,14 @@ def g_cubica(a, b, c, d):
 
 def main():
     a = 1
-    b = 1.11
-    c = -19.6282
-    d = 20.22744
-    g = g_cubica(a, b, c, d)
+    b = 2.22
+    c = -46.2173
+    d = -52.668834
+    e = 450.49078
+    g = g_cubica(a, b, c, d, e)
     
     soluciones = []
-    valores_iniciales = [-5.5, 3, 1.5]  
+    valores_iniciales = [-0.5, 3, 1.5]  
     
     for x0 in valores_iniciales:
         sol, iteraciones = punto_fijo(g, x0)
