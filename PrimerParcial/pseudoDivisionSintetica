@@ -1,0 +1,51 @@
+		FACTORIZACIÓN POR DIVISIÓN SINTÉTICA
+
+1.  Pedir el número de coeficientes
+n = pedir("¿Cuántos coeficientes tiene el polinomio? (n+1)")
+
+2. Pedir los coeficientes del polinomio
+coeficientes = []
+para i desde 0 hasta n hacer
+    coeficientes[i] = pedir("Introduce el coeficiente de x^" + (n-i))
+
+3. Imprimir la ecuación
+imprimir "Ecuación: "
+para i desde 0 hasta n hacer
+    si coeficientes[i] != 0 entonces
+        si i == n entonces
+            imprimir coeficientes[i]
+        sino
+            imprimir coeficientes[i] + "x^" + (n-i)
+        si coeficientes[i+1] >= 0 y i < n entonces
+            imprimir " + "
+        si coeficientes[i+1] < 0 entonces
+            imprimir " "
+    fin si
+fin para
+
+4. Calcular los divisores del coeficiente independiente
+divisores = []
+a_0 = coeficientes[n] // Término independiente
+para i desde 1 hasta |a_0| hacer
+    si a_0 % i == 0 entonces
+        divisores.agregar(i)
+        divisores.agregar(-i)
+    fin si
+fin para
+5.  División sintética para buscar las raíces
+para cada divisor en divisores hacer
+    resultado = []
+    resultado.agregar(coeficientes[0]) // Primer coeficiente tal cual
+    para j desde 1 hasta n hacer
+        nuevo_valor = coeficientes[j] + resultado[j-1] * divisor
+        resultado.agregar(nuevo_valor)
+    fin para
+
+    Verificar si el último valor es 0 (indica que es raíz)
+    si resultado[n] == 0 entonces
+        imprimir "Divisor " + divisor + " es raíz"
+        imprimir "Factor: (x - " + divisor + ")"
+    fin si
+fin para
+
+FIN
